@@ -1,60 +1,50 @@
 #!/bin/bash
 
-green="\e[32m"
-red="\e[31m"
-yellow="\e[33m"
-normal="\e[0m"
+# Define the bin file's name
+BIN_FILE="github_install_script"
 
-function logo {
-  curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/TDM-Crypto.sh | bash
+# Create the bin file and grant execution permission
+cat <<EOF > $BIN_FILE
+#!/bin/bash
+
+# Function to execute a command with feedback
+execute_command() {
+    echo "Executing: \$1"
+    \$1
+    sleep 2 # Adding a delay for better readability
 }
 
+# Update and upgrade packages
+execute_command "apt-get update && sudo apt-get upgrade -y"
 
-function update_vps {
-  apt-get update -y && apt-get upgrade -y
-  apt-get install git make screen jq -y
-}
+# Install dependencies
+execute_command "apt-get install git make screen jq -y"
 
-function install_golang {
-  wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
-  tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
-  export PATH=$PATH:/usr/local/go/bin
-  go version
-}
+# Download and install Go
+execute_command "wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz"
+execute_command "tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz"
+execute_command "export PATH=\$PATH:/usr/local/go/bin"
+execute_command "go version"
 
-function setup_sources {
-  cd $HOME || exit
-  curl -L https://foundry.paradigm.xyz | bash
-  source /root/.bashrc
-}
+# Install Foundry
+execute_command "curl -L https://foundry.paradigm.xyz | bash"
+execute_command "source /root/.bashrc"
+execute_command "foundryup"
 
-function dependency_need {
-  foundryup
-}
+# Clone Polaris repository
+execute_command "cd \$HOME"
+execute_command "git clone https://github.com/berachain/polaris"
+execute_command "cd polaris"
+execute_command "git checkout main"
 
-function init_chain {
-  cd $HOME || exit
-  git clone https://github.com/berachain/polaris
-  cd polaris || exit
-}
+# Start application
+execute_command "make start"
 
-function switch_to_main {
-  git checkout main
-}
+echo "Installation completed successfully."
+EOF
 
-function start_application {
-  make start
-}
+# Grant execution permission to the bin file
+chmod +x $BIN_FILE
 
-function main {
-  logo
-  update_vps
-  install_golang
-  setup_sources
-  dependency_need
-  init_chain
-  switch_to_main
-  start_application
-}
+echo "Installation script '$BIN_FILE' created."
 
-main
