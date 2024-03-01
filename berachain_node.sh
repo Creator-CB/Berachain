@@ -17,6 +17,8 @@ go version
 
 # Execute Foundrip.sh script
 bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/Foundrip.sh)
+
+# Prompt user to continue
 read -p "Press Enter to continue..."
 
 # Source bashrc to apply changes
