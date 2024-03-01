@@ -13,6 +13,8 @@ go version
 
 bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/Foundrip.sh)
 
+cd $HOME
+
 source /root/.bashrc
 
 foundryup
