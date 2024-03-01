@@ -14,11 +14,12 @@ export PATH=$PATH:/usr/local/go/bin
 
 go version
 
-bash <( curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/Foundrip.sh)
 
 cd $HOME
 git clone https://github.com/berachain/polaris
 cd polaris
+
+bash <( curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/Foundrip.sh)
 
 
 make start
