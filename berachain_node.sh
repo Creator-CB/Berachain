@@ -5,9 +5,10 @@ red="\e[31m"
 yellow="\e[33m"
 normal="\e[0m"
 
-function line {
-  echo -e "${red}----------------------------------------------------${normal}"
+function logo {
+  curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/TDM-Crypto.sh | bash
 }
+
 
 function update_vps {
   apt-get update -y && apt-get upgrade -y
@@ -15,8 +16,8 @@ function update_vps {
 }
 
 function install_go {
-  wget https://golang.org/dl/go1.17.5.linux-amd64.tar.gz
-  tar -C /usr/local -xzf go1.17.5.linux-amd64.tar.gz
+  wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
+  tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
   export PATH=$PATH:/usr/local/go/bin
   go version
 }
@@ -25,6 +26,10 @@ function setup_sources {
   cd $HOME || exit
   curl -L https://foundry.paradigm.xyz | bash
   source /root/.bashrc
+}
+
+function dependency_need {
+  foundryup
 }
 
 function init_chain {
@@ -42,12 +47,14 @@ function start_application {
 }
 
 function main {
-  line
+  logo
   update_vps
   line
   install_go
   line
   setup_sources
+  line
+  dependency_need
   line
   init_chain
   line
