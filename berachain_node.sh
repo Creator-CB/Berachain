@@ -6,7 +6,7 @@ set -e
 apt-get update && sudo apt-get upgrade -y
 
 # Install required packages
-apt-get install git make screen jq -y
+apt-get install git make screen jq curl -y
 
 # Download and install Go
 wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
@@ -20,19 +20,18 @@ go version
 curl -L https://foundry.paradigm.xyz | sudo bash
 
 # Source bashrc to apply changes
-source /root/.bashrc
+source /root/.bashrc || source /etc/profile
 
 # Run foundryup command
-source /root/.bashrc   # Ensure to reload the environment variables
-foundryup
+foundryup || source /root/.bashrc || source /etc/profile
 
 # Clone the GitHub repository
 cd $HOME
 git clone https://github.com/berachain/polaris
 cd polaris
 
-# Checkout to the main branch
-git checkout main
+# Ensure dependencies are installed
+make deps
 
 # Start the installation process
 make start
