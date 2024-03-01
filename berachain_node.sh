@@ -1,7 +1,7 @@
 #! /bin/bash
 bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/TDM-Crypto.sh)
 
-sudo apt-get update -y && sudo apt-get upgrade -y
+apt-get update && sudo apt-get upgrade -y
 
 apt-get install git make screen jq curl -у
 
