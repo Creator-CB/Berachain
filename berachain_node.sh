@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+
 
 # Update and upgrade system packages
 apt-get update && sudo apt-get upgrade -y
@@ -16,8 +16,8 @@ export PATH=$PATH:/usr/local/go/bin
 # Verify Go installation
 go version
 
-# Run the installation script for foundry
-curl -L https://foundry.paradigm.xyz | bash
+# Run the installation script for Foundry
+curl -L https://foundry.paradigm.xyz | sudo bash
 
 # Source bashrc to apply changes
 source /root/.bashrc
