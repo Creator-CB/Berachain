@@ -15,7 +15,7 @@ function update_vps {
   apt-get install git make screen jq -y
 }
 
-function install_go {
+function install_golang {
   wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
   tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
   export PATH=$PATH:/usr/local/go/bin
@@ -49,19 +49,12 @@ function start_application {
 function main {
   logo
   update_vps
-  line
-  install_go
-  line
+  install_golang
   setup_sources
-  line
   dependency_need
-  line
   init_chain
-  line
   switch_to_main
-  line
   start_application
-  line
 }
 
 main
