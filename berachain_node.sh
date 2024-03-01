@@ -17,13 +17,10 @@ go version
 
 # Execute Foundrip.sh script
 bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/Foundrip.sh)
-sleep 10  # Pause for 10 seconds
+read -p "Press Enter to continue..."
 
 # Source bashrc to apply changes
 source /root/.bashrc
-
-# Pause for 10 seconds
-sleep 10
 
 # Run foundryup command
 foundryup
