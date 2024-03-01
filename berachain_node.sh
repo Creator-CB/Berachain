@@ -1,48 +1,30 @@
-#!/bin/bash
+#! /bin/bash
+bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/TDM-Crypto.sh)
 
 set -e
 
-# Update and upgrade system packages
 apt-get update && sudo apt-get upgrade -y
 
-# Install required packages
-apt-get install curl jq -y
+apt-get install git make screen jq curl -у
 
-# Retry the curl command a few times before giving up
-max_retries=3
-retry_delay=10
-retries=0
-while [ $retries -lt $max_retries ]; do
-    if curl -L https://foundry.paradigm.xyz | sudo bash; then
-        echo "Foundry installation successful."
-        break
-    else
-        echo "Failed to install Foundry. Retrying in $retry_delay seconds..."
-        sleep $retry_delay
-        retries=$((retries+1))
-    fi
-done
+wget https://golang.org/d1/go1.21.4.linux-amd64.tar.gz
 
-# Check if installation was successful
-if [ $retries -eq $max_retries ]; then
-    echo "Error: Failed to install Foundry after $max_retries attempts."
-    exit 1
-fi
+tar -C/usr/local -xzf go1.21.4.1inux-amd64. tar.gz
 
-# Pause after basic installation
-echo "Waiting for installation to complete..."
-sleep 10
+export PATH=SPATH:/us/local/go/bin
 
-# Source bashrc to apply changes
-source /root/.bashrc || source /etc/profile
+go version
 
-# Run foundryup command
-if foundryup; then
-    echo "Foundryup command successful."
-else
-    echo "Error: foundryup command failed."
-    exit 1
-fi
+bash < curl -s https://raw.githubusercontent.com/Creatfoundryupor-CB/FILES/main/Foundrip.sh)
 
-# Source bashrc again after foundryup
-source /root/.bashrc || source /etc/profile
+source /root/.bashrc
+
+foundryup
+
+cd $HOME
+
+git clone https://github.com/berachain/polaris
+
+cd polaris
+
+make start
