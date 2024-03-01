@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+set -e
 
 # Update and upgrade system packages
 apt-get update && sudo apt-get upgrade -y
@@ -23,6 +23,7 @@ curl -L https://foundry.paradigm.xyz | sudo bash
 source /root/.bashrc
 
 # Run foundryup command
+source /root/.bashrc   # Ensure to reload the environment variables
 foundryup
 
 # Clone the GitHub repository
