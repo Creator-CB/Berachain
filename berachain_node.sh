@@ -17,13 +17,13 @@ export PATH=$PATH:/usr/local/go/bin
 go version
 
 # Run the installation script for Foundry
-curl -L https://foundry.paradigm.xyz | sudo bash
+curl -L https://foundry.paradigm.xyz
 
 # Source bashrc to apply changes
-source /root/.bashrc || source /etc/profile
+source /root/.bashrc
 
 # Run foundryup command
-foundryup || source /root/.bashrc || source /etc/profile
+foundryup
 
 # Clone the GitHub repository
 cd $HOME
