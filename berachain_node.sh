@@ -1,50 +1,37 @@
 #!/bin/bash
 
-# Define the bin file's name
-BIN_FILE="github_install_script"
+set -e
 
-# Create the bin file and grant execution permission
-cat <<EOF > $BIN_FILE
-#!/bin/bash
+# Update and upgrade system packages
+apt-get update && sudo apt-get upgrade -y
 
-# Function to execute a command with feedback
-execute_command() {
-    echo "Executing: \$1"
-    \$1
-    sleep 2 # Adding a delay for better readability
-}
-
-# Update and upgrade packages
-execute_command "apt-get update && sudo apt-get upgrade -y"
-
-# Install dependencies
-execute_command "apt-get install git make screen jq -y"
+# Install required packages
+apt-get install git make screen jq -y
 
 # Download and install Go
-execute_command "wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz"
-execute_command "tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz"
-execute_command "export PATH=\$PATH:/usr/local/go/bin"
-execute_command "go version"
+wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 
-# Install Foundry
-execute_command "curl -L https://foundry.paradigm.xyz | bash"
-execute_command "source /root/.bashrc"
-execute_command "foundryup"
+# Verify Go installation
+go version
 
-# Clone Polaris repository
-execute_command "cd \$HOME"
-execute_command "git clone https://github.com/berachain/polaris"
-execute_command "cd polaris"
-execute_command "git checkout main"
+# Run the installation script for foundry
+curl -L https://foundry.paradigm.xyz | bash
 
-# Start application
-execute_command "make start"
+# Source bashrc to apply changes
+source /root/.bashrc
 
-echo "Installation completed successfully."
-EOF
+# Run foundryup command
+foundryup
 
-# Grant execution permission to the bin file
-chmod +x $BIN_FILE
+# Clone the GitHub repository
+cd $HOME
+git clone https://github.com/berachain/polaris
+cd polaris
 
-echo "Installation script '$BIN_FILE' created."
+# Checkout to the main branch
+git checkout main
 
+# Start the installation process
+make start
