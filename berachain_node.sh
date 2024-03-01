@@ -1,9 +1,6 @@
 #! /bin/bash
 bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/TDM-Crypto.sh)
 
-apt-get update && sudo apt-get upgrade -y
-
-apt-get install git make screen jq curl -у
 
 wget https://golang.org/d1/go1.21.4.linux-amd64.tar.gz
 
