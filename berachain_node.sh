@@ -4,7 +4,7 @@ set -e
 
 bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/TDM-Crypto.sh)
 
-apt-get install git make screen jq -y
+sudo apt-get install git make screen jq -y
 
 wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
