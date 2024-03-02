@@ -20,7 +20,7 @@ cd polaris
 
 git checkout main
 
-export PATH=$PATH:/usr/local/go/bin
+echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc && source ~/.bashrc
 
 make start
 
