@@ -20,5 +20,7 @@ cd polaris
 
 git checkout main
 
+export PATH=$PATH:/usr/local/go/bin
+
 make start
 
