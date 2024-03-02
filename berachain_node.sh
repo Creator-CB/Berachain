@@ -4,7 +4,7 @@ set -e
 
 bash <(curl -s https://raw.githubusercontent.com/Creator-CB/FILES/main/TDM-Crypto.sh)
 
-sudo apt-get update -y && sudo apt-get upgrade -y
+
 
 wget https://golang.org/dl/go1.21.4.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.21.4.linux-amd64.tar.gz
