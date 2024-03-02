@@ -18,6 +18,5 @@ git clone https://github.com/berachain/polaris
 
 cd polaris
 
-git checkout main
+git checkout main && make start
 
-make start
